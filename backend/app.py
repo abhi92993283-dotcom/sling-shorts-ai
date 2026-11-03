@@ -29,7 +29,7 @@ def duration(path):
     return max(1.0, float(run(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(path)]).strip()))
 
 def download_youtube(url, dest):
-    if not re.match(r"^https?://(www\\.)?(youtube\\.com|youtu\\.be)/", url.strip(), re.I):
+    if not re.match(r"^https?://(www[.])?(youtube[.]com|youtu[.]be)/", url.strip(), re.I):
         raise ValueError("Please enter a standard YouTube video URL.")
     run(["yt-dlp","--no-playlist","-f","bv*[height<=1080]+ba/b[height<=1080]","--merge-output-format","mp4","-o",str(dest),url])
     if not dest.exists():
@@ -88,7 +88,7 @@ def make_srt(words,start,end,target):
         for i,g in enumerate(chunks,1):
             a=max(0,g[0]["start"]-start); b=max(a+.15,g[-1]["end"]-start)
             lines += [str(i),f"{stamp(a)} --> {stamp(min(b,end-start))}"," ".join(x["text"] for x in g),""]
-    target.write_text("\\n".join(lines),encoding="utf-8")
+    target.write_text("\n".join(lines),encoding="utf-8")
     return bool(selected)
 
 def process_one(src,jobid,index,clip_count,clip_len):
@@ -113,7 +113,7 @@ def process_one(src,jobid,index,clip_count,clip_len):
         output=OUT/f"{jobid}_video{index+1}_short{n}.mp4"
         vf=f"crop={crop_w}:{h}:{x}:0,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920"
         if has_sub:
-            safe=str(srt).replace("\\\\","/").replace(":","\\\\:")
+            safe=str(srt).replace("\\","/").replace(":","\\\\:")
             vf+=f",subtitles='{safe}':force_style='FontName=Arial,FontSize=19,PrimaryColour=&H00FFFFFF,OutlineColour=&H00101010,BorderStyle=1,Outline=3,Shadow=1,Alignment=2,MarginV=170'"
         run(["ffmpeg","-y","-ss",str(start),"-i",str(src),"-t",str(end-start),"-vf",vf,"-c:v","libx264","-preset","veryfast","-crf","23","-c:a","aac","-b:a","128k","-movflags","+faststart",str(output)])
         JOBS[jobid]["results"].append({"name":output.name,"url":f"/download/{output.name}","score":round(sc,1),"duration":round(end-start,1),"source":src.name})
