@@ -1,4 +1,4 @@
-const API_BASE = ""; // For a separate public frontend, set this to your backend URL.
+const API_BASE = "http://127.0.0.1:8000"; // Local processing engine on the same computer.
 const $ = id => document.getElementById(id);
 let selected = [];
 $("files").addEventListener("change", e => { selected=[...e.target.files]; showFiles(); });
