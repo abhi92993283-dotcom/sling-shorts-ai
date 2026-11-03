@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SLING SHORTS AI — Viral Shorts Maker</title>
+<link rel="stylesheet" href="/web/style.css">
+</head>
+<body>
+<div class="glow"></div>
+<header class="topbar"><a class="brand" href="#"><span class="brand-icon">S</span><span>SLING <b>SHORTS</b><small>AI STUDIO</small></span></a><div class="status"><i></i> LOCAL ENGINE</div></header>
+<main>
+<section class="hero"><div class="eyebrow">✦ YOUR PERSONAL AI CLIP STUDIO</div><h1>Turn long videos into<br><span>viral Shorts.</span></h1><p>Find the moments that matter. Create vertical clips with smart captions, face-aware framing and zero added watermark.</p></section>
+<section class="workspace">
+<div class="section-head"><div><span class="step">01</span><h2>Add your video</h2></div><span class="muted">Upload files or paste a YouTube link</span></div>
+<div class="urlbox"><label for="yt">YOUTUBE VIDEO URL</label><input id="yt" type="url" placeholder="https://www.youtube.com/watch?v=..."></div>
+<div class="or"><span>OR UPLOAD VIDEO FILES</span></div>
+<label class="dropzone" id="drop"><input id="files" type="file" accept="video/*,.mkv" multiple hidden><div class="upload-icon">↑</div><strong>Drop videos here or <em>browse files</em></strong><small>MP4, MOV, MKV or WebM · up to 2 GB each</small><div id="filelist" class="filelist"></div></label>
+<div class="section-head settings-head"><div><span class="step">02</span><h2>Clip settings</h2></div><span class="muted">Make it yours</span></div>
+<div class="settings">
+<div class="setting"><label for="count">SHORTS PER VIDEO</label><select id="count"><option>3</option><option>5</option><option>8</option><option>10</option></select></div>
+<div class="setting"><label for="length">CLIP LENGTH</label><select id="length"><option value="25">25 seconds</option><option value="35" selected>35 seconds</option><option value="45">45 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option></select></div>
+<div class="feature"><span>✦</span><div><b>AI highlight selection</b><small>Ranks moments using transcript signals</small></div><i class="on">ON</i></div>
+<div class="feature"><span>▤</span><div><b>Animated-style captions</b><small>Burned-in subtitles when speech is detected</small></div><i class="on">ON</i></div>
+<div class="feature"><span>▯</span><div><b>Vertical 9:16 + face-aware crop</b><small>Centers detected faces when possible</small></div><i class="on">ON</i></div>
+<div class="feature"><span>◈</span><div><b>Clean export</b><small>No SLING watermark added</small></div><i class="on">ON</i></div>
+</div>
+<button id="generate" class="primary"><span>✦</span> Generate my Shorts <b>→</b></button>
+<div id="message" class="message" role="status">Your videos are processed on the computer running this app.</div>
+</section>
+<section id="results" class="results hidden"><div class="section-head"><div><span class="step">03</span><h2>Your Shorts</h2></div><span id="jobstatus" class="muted">Processing…</span></div><div class="progress"><div id="bar"></div></div><div id="cards" class="cards"></div></section>
+</main>
+<footer><span>SLING SHORTS AI</span><span>Made for creators · Local-first processing</span></footer>
+<script src="/web/app.js"></script>
+</body></html>
