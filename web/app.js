@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000"; // Local processing engine on the same computer.
+const API_BASE = ""; // Same-origin local backend; no public server required.
 const $ = id => document.getElementById(id);
 let selected = [];
 $("files").addEventListener("change", e => { selected=[...e.target.files]; showFiles(); });
